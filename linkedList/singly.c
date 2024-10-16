@@ -23,7 +23,7 @@ void display(struct Node* n1){
         printf("%d -> ", temp->data);
         temp=temp->next;
     }
-    printf("NULL");
+    printf("NULL\n");
 
 }
 struct Node* insertFirst(struct Node* slist, int data){
@@ -37,12 +37,26 @@ struct Node* insertFirst(struct Node* slist, int data){
     }
     
 }
+struct Node* insertEnd(struct Node* slist, int data){
+    struct Node* newNode = createNode(data);
+    if(slist==NULL){
+        return newNode;
+    }else{
+        struct Node* temp = slist;
+        while (temp->next!=NULL){
+            temp=temp->next;
+        }
+        temp->next=newNode;
+        return slist;
+    }
+    
+}
 struct Node* create(struct Node* head, int n){
     printf("enter data part of %d nodes : ", n);
     for(int i =0 ; i<n; i++){
         int data;
         scanf("%d", &data);
-        head = insertFirst(head, data);
+        head = insertEnd(head, data);
     }
     return head;
 }
@@ -57,10 +71,23 @@ int countNodes(struct Node* head){
     printf("List has %d nodes ", cnt);
     return cnt;
 }
+
+struct Node* reverse(struct Node* slist, struct Node* rev){
+    struct Node* temp = slist;
+    while(temp!=NULL){
+        rev=insertFirst(rev, temp->data);
+        temp=temp->next;
+    }
+    return rev;
+}
 int main(){
     struct Node* slist=NULL;
+    struct Node* slist1=NULL;
     int n;
     slist = create(slist, scanInt("Enter number of nodes to be inserted : "));
-    countNodes(slist);
     display(slist);
+
+    slist1 = reverse(slist, slist1);
+    display(slist1);
+
 }
