@@ -75,6 +75,19 @@ struct Node* insertMid(struct Node* head, int data, int pos){
     return head;
 
 }
+///c) Write C function to reverse singly linked list.
+struct Node* reverseList(struct Node* head){
+    struct Node* temp = head;
+    struct Node* reverse = NULL;
+    while (temp!=NULL){
+        int data = temp->data;
+        reverse = insertFirst(reverse, data);
+        temp = temp->next;
+    }
+      
+    return reverse;
+}
+
 int main(){
     struct Node* slist =NULL;
     slist = insertFirst(slist,10);
@@ -83,5 +96,7 @@ int main(){
     slist = insertFirst(slist,15); 
     display(slist);
     slist = insertMid(slist, 11, 1);
+    display(slist);
+    slist = reverseList(slist);
     display(slist);
 }

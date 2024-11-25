@@ -70,3 +70,28 @@ struct Node* insertMid(struct Node* head, int data, int pos){
 
 }
 ```
+
+# reverse using extra space 
+```c
+struct Node* insertFirst(struct Node* slist, int data){
+    struct Node* newNode = createNode(data);
+    if(slist==NULL){
+        return newNode;
+    }else{
+        newNode->next=slist;
+        slist = newNode;
+        return slist;
+    }  
+}
+struct Node* reverseList(struct Node* head){
+    struct Node* temp = head;
+    struct Node* reverse = NULL;
+    while (temp!=NULL){
+        int data = temp->data;
+        reverse = insertFirst(reverse, data);
+        temp = temp->next;
+    }
+      
+    return reverse;
+}
+```
