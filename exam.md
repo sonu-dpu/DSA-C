@@ -136,3 +136,29 @@ int binary2(int arr[], int left,int right, int key){
 }
 ```
 
+# Stack 
+## Push
+```c
+void push(struct stack* s, int data){
+    if(s->top==MAX-1){
+        printf("stack is full\n");
+        return;
+    }
+    s->top++;
+    s->arr[s->top] = data;
+    printf("pushed %d onto stack\n", data);
+}
+```
+## pop
+```c
+int pop(struct stack* s){
+    if(s->top==-1){
+        printf("Stack is empty\n");
+        return -1;
+    }
+    int data = s->arr[s->top];
+    s->top--;
+    printf("popped %d\n", data);
+    return data;
+}
+```
